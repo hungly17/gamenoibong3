@@ -41,7 +41,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
   return (
     <section className="home-screen" data-testid="home-screen">
-      {/* Thanh trên cùng: Chọn màn, Sổ Nhãn Dán & Bật/tắt âm thanh */}
+      {/* Thanh trên cùng gọn gàng trên 1 hàng */}
       <div className="home-top-bar">
         <div className="home-top-left-group">
           <button
@@ -59,7 +59,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             className="secondary-pill-btn home-top-btn home-sticker-btn"
             onClick={onOpenStickerBook}
           >
-            🎁 Nhãn Dán ({unlockedCount}/{STICKER_COLLECTION.length})
+            🎁 Quà ({unlockedCount}/{STICKER_COLLECTION.length})
           </button>
         </div>
 
@@ -76,40 +76,50 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* Khu vực trung tâm Trang chủ */}
       <div className="home-hero-card">
-        <div className="home-logo-badge" aria-hidden="true">
-          <span
-            className="logo-ball"
-            style={{ backgroundColor: BALL_COLORS.red.hex }}
-          />
-          <span className="logo-connector" />
-          <span
-            className="logo-ball"
-            style={{ backgroundColor: BALL_COLORS.blue.hex }}
-          />
-          <span className="logo-connector logo-connector--yellow" />
-          <span
-            className="logo-ball"
-            style={{ backgroundColor: BALL_COLORS.yellow.hex }}
-          />
+        <div className="home-brand-header">
+          <div className="home-logo-badge" aria-hidden="true">
+            <span
+              className="logo-ball"
+              style={{ backgroundColor: BALL_COLORS.red.hex }}
+            />
+            <span className="logo-connector" />
+            <span
+              className="logo-ball"
+              style={{ backgroundColor: BALL_COLORS.blue.hex }}
+            />
+            <span className="logo-connector logo-connector--yellow" />
+            <span
+              className="logo-ball"
+              style={{ backgroundColor: BALL_COLORS.yellow.hex }}
+            />
+          </div>
+          <h1 className="home-title">Bé Nối Bóng Màu</h1>
         </div>
 
-        <h1 className="home-title">Bé Nối Bóng Màu</h1>
-
-        <div className="home-mascot-stage">
-          <MascotCharacter mood="happy" size={88} />
+        <div className="home-mascot-banner">
+          <MascotCharacter mood="happy" size={68} />
+          <p className="home-guide-text">
+            {nonCrossingMode
+              ? '🔥 Chế độ Khó: Vẽ đường nối không cắt hoặc đè lên nhau nhé!'
+              : 'Tìm hai quả bóng cùng màu và nối chúng lại nhé!'}
+          </p>
         </div>
 
-        <p className="home-guide-text">
-          {nonCrossingMode
-            ? '🔥 Chế độ Khó: Vẽ đường nối không được cắt hoặc đè lên nhau nhé!'
-            : 'Tìm hai quả bóng cùng màu và nối chúng lại nhé!'}
-        </p>
+        {/* Nút lớn BẮT ĐẦU CHƠI đặt ngay vị trí trung tâm dễ bấm nhất */}
+        <button
+          type="button"
+          data-testid="btn-start-play"
+          className="primary-jumbo-btn home-start-btn"
+          onClick={onStartPlay}
+        >
+          BẮT ĐẦU CHƠI ▶
+        </button>
 
-        {/* Hai lựa chọn độ tuổi + Chế độ thử thách Không Cắt Nhau */}
+        {/* Hai lựa chọn độ tuổi */}
         <div
           className="age-selector-group"
           role="radiogroup"
-          aria-label="Chọn độ tuổi và cấp độ của bé"
+          aria-label="Chọn độ tuổi của bé"
         >
           <button
             type="button"
@@ -142,7 +152,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </button>
         </div>
 
-        {/* Nút bật/tắt Luật Khó: Không Cắt Nhau + Vào thẳng Mê Cung Không Cắt Nhau */}
+        {/* Hàng chọn Luật Đường Nối & Mê Cung Không Cắt Nhau */}
         <div className="crossing-rule-bar">
           <button
             type="button"
@@ -150,9 +160,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             className={`crossing-toggle-btn ${nonCrossingMode ? 'crossing-toggle-btn--active' : ''}`}
             onClick={onToggleNonCrossing}
           >
-            {nonCrossingMode
-              ? '🔥 Đang bật: Đường Không Cắt Nhau'
-              : '🟢 Đang bật: Nối Tự Do (Bấm để bật Không Cắt Nhau)'}
+            {nonCrossingMode ? '🔥 Luật: Không Cắt Nhau' : '🟢 Luật: Nối Tự Do'}
           </button>
 
           <button
@@ -161,7 +169,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             className="hard-maze-quick-btn"
             onClick={onStartHardMazeLevels}
           >
-            🧩 Chơi ngay Mê Cung Không Cắt Nhau (Màn 21–25)
+            🧩 Mê Cung Khó (21–25)
           </button>
         </div>
 
@@ -199,16 +207,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             🔷 Hình Khối
           </button>
         </div>
-
-        {/* Nút lớn BẮT ĐẦU CHƠI */}
-        <button
-          type="button"
-          data-testid="btn-start-play"
-          className="primary-jumbo-btn home-start-btn"
-          onClick={onStartPlay}
-        >
-          BẮT ĐẦU CHƠI ▶
-        </button>
 
         <button
           type="button"
