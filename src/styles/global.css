@@ -1,0 +1,130 @@
+:root {
+  --bg-main: #F4F8FF;
+  --bg-card: #FFFFFF;
+  --text-primary: #1E293B;
+  --text-secondary: #475569;
+  --color-red: #FF5C5C;
+  --color-yellow: #FFC83D;
+  --color-blue: #4D96FF;
+  --color-green: #55C98A;
+  --color-orange: #FF9855;
+  --color-purple: #A78BFA;
+  --font-family-main: 'Segoe UI', 'Nunito', 'Quicksand', -apple-system, BlinkMacSystemFont,
+    'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-family-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  touch-action: manipulation;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 2px;
+}
+
+.app-shell {
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  background: radial-gradient(circle at 50% 15%, #FFFFFF 0%, #F4F8FF 68%, #E6F0FF 100%);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Nút bấm lớn chuẩn mầm non */
+.primary-jumbo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 60px;
+  padding: 14px 32px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #5CE098 0%, #3BB873 100%);
+  color: #FFFFFF;
+  font-size: clamp(1.2rem, 4vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  box-shadow: 0 6px 0 #268C53, 0 10px 20px rgba(59, 184, 115, 0.32);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.primary-jumbo-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #268C53, 0 4px 10px rgba(59, 184, 115, 0.25);
+}
+
+.secondary-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: #FFFFFF;
+  color: #334155;
+  font-size: 1rem;
+  font-weight: 700;
+  border: 2px solid #CBD5E1;
+  box-shadow: 0 4px 0 #CBD5E1;
+  transition: transform 0.12s ease;
+}
+
+.secondary-pill-btn:active {
+  transform: translateY(2px);
+}
+
+.icon-pill-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2.5px solid #D8E6FF;
+  box-shadow: 0 4px 0 #C3D9FF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+  transition: transform 0.12s ease;
+}
+
+.icon-pill-btn:active {
+  transform: translateY(3px);
+}
