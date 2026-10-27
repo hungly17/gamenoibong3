@@ -1,5 +1,5 @@
 import React from 'react';
-import { BALL_COLORS, BallColorId, GameMode, Point } from '../game/gameTypes';
+import { BALL_COLORS, BallColorId, GameMode, Point, ShapeSymbol } from '../game/gameTypes';
 
 interface BallProps {
   id: string;
@@ -14,47 +14,72 @@ interface BallProps {
   isHinted: boolean;
 }
 
-function renderInnerSymbol(symbol: string, solid: boolean = false) {
-  const fill = solid ? 'rgba(255,255,255,0.88)' : 'rgba(255,255,255,0.34)';
+function renderInnerSymbol(symbol: ShapeSymbol, solid: boolean = false) {
+  const fill = solid ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.28)';
+  const stroke = solid ? 'rgba(15,23,42,0.14)' : 'none';
   switch (symbol) {
     case 'heart':
       return (
         <path
-          d="M12 20.5 C12 20.5 5 15.2 5 10.2 C5 7.6 7 5.5 9.5 5.5 C11 5.5 12 6.4 12 7.5 C12 6.4 13 5.5 14.5 5.5 C17 5.5 19 7.6 19 10.2 C19 15.2 12 20.5 12 20.5 Z"
+          d="M12 20.5 C12 20.5 4.8 15.2 4.8 10.2 C4.8 7.5 6.9 5.4 9.5 5.4 C11 5.4 12 6.3 12 7.5 C12 6.3 13 5.4 14.5 5.4 C17.1 5.4 19.2 7.5 19.2 10.2 C19.2 15.2 12 20.5 12 20.5 Z"
           fill={fill}
+          stroke={stroke}
+          strokeWidth="0.8"
         />
       );
-    case 'sun':
-      return <circle cx="12" cy="12" r="6" fill={fill} />;
+    case 'circle':
+      return (
+        <circle
+          cx="12"
+          cy="12"
+          r="6.8"
+          fill={fill}
+          stroke={stroke}
+          strokeWidth="0.8"
+        />
+      );
+    case 'square':
+      return (
+        <rect
+          x="5.8"
+          y="5.8"
+          width="12.4"
+          height="12.4"
+          rx="2.4"
+          fill={fill}
+          stroke={stroke}
+          strokeWidth="0.8"
+        />
+      );
+    case 'triangle':
+      return (
+        <path
+          d="M12 4.8 L19.5 18.2 H4.5 Z"
+          strokeLinejoin="round"
+          fill={fill}
+          stroke={stroke}
+          strokeWidth="0.8"
+        />
+      );
     case 'star':
       return (
         <path
-          d="M12 4.5 L14.3 9.2 L19.5 10 L15.7 13.6 L16.6 18.8 L12 16.3 L7.4 18.8 L8.3 13.6 L4.5 10 L9.7 9.2 Z"
+          d="M12 4.3 L14.4 9.1 L19.7 9.9 L15.8 13.6 L16.7 18.9 L12 16.4 L7.3 18.9 L8.2 13.6 L4.3 9.9 L9.6 9.1 Z"
+          strokeLinejoin="round"
           fill={fill}
+          stroke={stroke}
+          strokeWidth="0.8"
         />
       );
-    case 'leaf':
-      return (
-        <path
-          d="M17.5 5.5 C10 5.5 5.5 10 5.5 17.5 C13 17.5 17.5 13 17.5 5.5 Z"
-          fill={fill}
-        />
-      );
-    case 'flower':
-      return (
-        <g fill={fill}>
-          <circle cx="12" cy="7.5" r="3.2" />
-          <circle cx="16.5" cy="12" r="3.2" />
-          <circle cx="12" cy="16.5" r="3.2" />
-          <circle cx="7.5" cy="12" r="3.2" />
-        </g>
-      );
-    case 'moon':
+    case 'diamond':
     default:
       return (
         <path
-          d="M14.5 6 A6 6 0 1 0 18 15.5 A4.8 4.8 0 1 1 14.5 6 Z"
+          d="M12 4.2 L19.2 12 L12 19.8 L4.8 12 Z"
+          strokeLinejoin="round"
           fill={fill}
+          stroke={stroke}
+          strokeWidth="0.8"
         />
       );
   }
@@ -89,6 +114,15 @@ export const Ball: React.FC<BallProps> = ({
       ? colorDef.animalPair.animalEmoji
       : colorDef.animalPair.foodEmoji;
 
+  const ariaDescription =
+    gameMode === 'animals'
+      ? pairRole === 0
+        ? `${colorDef.animalPair.animalNameVi} (${colorDef.nameVi})`
+        : `${colorDef.animalPair.foodNameVi} (${colorDef.nameVi})`
+      : gameMode === 'shapes'
+        ? colorDef.shapeNameVi
+        : `Bóng ${colorDef.nameVi}`;
+
   return (
     <div
       id={id}
@@ -109,7 +143,7 @@ export const Ball: React.FC<BallProps> = ({
         } as React.CSSProperties
       }
       role="img"
-      aria-label={`Bóng ${colorDef.nameVi}${isCompleted ? ' đã nối' : ''}`}
+      aria-label={`${ariaDescription}${isCompleted ? ' đã nối' : ''}`}
     >
       {(isSelected || isHoveredTarget || isHinted || isCompleted) && (
         <span className="game-ball__halo" />
@@ -131,8 +165,8 @@ export const Ball: React.FC<BallProps> = ({
           <svg
             className="game-ball__symbol game-ball__symbol--solid"
             viewBox="0 0 24 24"
-            width="64%"
-            height="64%"
+            width="66%"
+            height="66%"
             aria-hidden="true"
           >
             {renderInnerSymbol(colorDef.symbol, true)}
@@ -143,8 +177,8 @@ export const Ball: React.FC<BallProps> = ({
             <svg
               className="game-ball__symbol"
               viewBox="0 0 24 24"
-              width="58%"
-              height="58%"
+              width="56%"
+              height="56%"
               aria-hidden="true"
             >
               {renderInnerSymbol(colorDef.symbol, false)}

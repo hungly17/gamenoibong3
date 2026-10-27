@@ -2,6 +2,8 @@ export type BallColorId = 'red' | 'yellow' | 'blue' | 'green' | 'orange' | 'purp
 
 export type GameMode = 'classic' | 'animals' | 'shapes';
 
+export type ShapeSymbol = 'heart' | 'circle' | 'square' | 'triangle' | 'star' | 'diamond';
+
 export interface ColorDefinition {
   id: BallColorId;
   nameVi: string;
@@ -9,7 +11,7 @@ export interface ColorDefinition {
   lightHex: string;
   darkHex: string;
   glowHex: string;
-  symbol: 'star' | 'heart' | 'sun' | 'leaf' | 'flower' | 'moon';
+  symbol: ShapeSymbol;
   shapeNameVi: string;
   animalPair: {
     animalEmoji: string;
@@ -28,12 +30,12 @@ export const BALL_COLORS: Record<BallColorId, ColorDefinition> = {
     darkHex: '#D93838',
     glowHex: 'rgba(255, 92, 92, 0.55)',
     symbol: 'heart',
-    shapeNameVi: 'Trái Tim Đỏ',
+    shapeNameVi: 'Hình Trái Tim Đỏ',
     animalPair: {
-      animalEmoji: '🐞',
-      animalNameVi: 'Bọ Rùa Đỏ',
-      foodEmoji: '🍓',
-      foodNameVi: 'Dâu Tây Đỏ'
+      animalEmoji: '🐶',
+      animalNameVi: 'Cún Con',
+      foodEmoji: '🦴',
+      foodNameVi: 'Khúc Xương'
     }
   },
   yellow: {
@@ -43,13 +45,13 @@ export const BALL_COLORS: Record<BallColorId, ColorDefinition> = {
     lightHex: '#FFE082',
     darkHex: '#E09F15',
     glowHex: 'rgba(255, 200, 61, 0.6)',
-    symbol: 'sun',
+    symbol: 'circle',
     shapeNameVi: 'Hình Tròn Vàng',
     animalPair: {
       animalEmoji: '🐵',
       animalNameVi: 'Khỉ Con',
       foodEmoji: '🍌',
-      foodNameVi: 'Chuối Vàng'
+      foodNameVi: 'Quả Chuối'
     }
   },
   blue: {
@@ -59,13 +61,13 @@ export const BALL_COLORS: Record<BallColorId, ColorDefinition> = {
     lightHex: '#82B6FF',
     darkHex: '#256CD9',
     glowHex: 'rgba(77, 150, 255, 0.55)',
-    symbol: 'star',
-    shapeNameVi: 'Ngôi Sao Xanh',
+    symbol: 'square',
+    shapeNameVi: 'Hình Vuông Xanh',
     animalPair: {
       animalEmoji: '🐱',
       animalNameVi: 'Mèo Con',
       foodEmoji: '🐟',
-      foodNameVi: 'Cá Xanh'
+      foodNameVi: 'Con Cá'
     }
   },
   green: {
@@ -75,13 +77,13 @@ export const BALL_COLORS: Record<BallColorId, ColorDefinition> = {
     lightHex: '#85E0AD',
     darkHex: '#2FA164',
     glowHex: 'rgba(85, 201, 138, 0.55)',
-    symbol: 'leaf',
-    shapeNameVi: 'Chiếc Lá Xanh',
+    symbol: 'triangle',
+    shapeNameVi: 'Hình Tam Giác Xanh',
     animalPair: {
       animalEmoji: '🐼',
       animalNameVi: 'Gấu Trúc',
       foodEmoji: '🎋',
-      foodNameVi: 'Trúc Xanh'
+      foodNameVi: 'Lá Trúc'
     }
   },
   orange: {
@@ -91,13 +93,13 @@ export const BALL_COLORS: Record<BallColorId, ColorDefinition> = {
     lightHex: '#FFB988',
     darkHex: '#E06E26',
     glowHex: 'rgba(255, 152, 85, 0.55)',
-    symbol: 'flower',
-    shapeNameVi: 'Bông Hoa Cam',
+    symbol: 'star',
+    shapeNameVi: 'Ngôi Sao Cam',
     animalPair: {
       animalEmoji: '🐰',
       animalNameVi: 'Thỏ Con',
       foodEmoji: '🥕',
-      foodNameVi: 'Cà Rốt Cam'
+      foodNameVi: 'Củ Cà Rốt'
     }
   },
   purple: {
@@ -107,13 +109,13 @@ export const BALL_COLORS: Record<BallColorId, ColorDefinition> = {
     lightHex: '#C7B5FD',
     darkHex: '#7C5CE0',
     glowHex: 'rgba(167, 139, 250, 0.55)',
-    symbol: 'moon',
-    shapeNameVi: 'Mặt Trăng Tím',
+    symbol: 'diamond',
+    shapeNameVi: 'Hình Thoi Tím',
     animalPair: {
       animalEmoji: '🦋',
-      animalNameVi: 'Bướm Tím',
-      foodEmoji: '🍇',
-      foodNameVi: 'Nho Tím'
+      animalNameVi: 'Bướm Xinh',
+      foodEmoji: '🌸',
+      foodNameVi: 'Bông Hoa'
     }
   }
 };
